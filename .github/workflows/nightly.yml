@@ -71,18 +71,7 @@ jobs:
           test-report.md
           .coverage
 
-    - name: Notify on failure
-      if: failure()
-      uses: actions/github-script@v6
-      with:
-        script: |
-          github.rest.issues.create({
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            title: '🚨 Nightly Tests Failed',
-            body: 'The nightly test suite has failed. Please check the workflow run for details.',
-            labels: ['bug', 'ci']
-          })
+  
 
   security-audit:
     runs-on: ubuntu-latest
